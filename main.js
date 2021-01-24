@@ -17,19 +17,31 @@ ownerCmd = [' restart ']
 reactsTo = [' lol ', ' poop ', ' thank you ', ' welcome ', ' hi ']
 
 client.on('message', message => {
+    const msg = message.content.toLowerCase();
     if (message.author.bot) return;
     try {
         console.log(`Entered try`)
-        if (message.content === `~ping`){
+        if (msg === `~ping`){
             message.channel.send(`🏓Latency is: ${Date.now() - message.createdTimestamp}ms`);
         }
-        else if (message.content === `~user-info`){
+        else if (msg === `~user-info`){
             message.channel.send(`Username: ${message.author.username}\nYour ID: ${message.author.id}`);
         }
-        else if (message.content === `~server-info`){
-            message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`);
+        else if (msg === `~server-info`){
+            const serverEmbed = new Discord.MessageEmbed()
+                .setColor('RANDOM')
+                .setTitle('Server Info:-')
+                .addField('Name:-', `${message.guild.name}`)
+                .addField('Total Members:-', `${message.guild.memberCount}`)
+                .addField('Humans:-', `${message.guild.members.cache.filter(member => !member.user.bot).size}`)
+                .addField('Roles:-', `${message.guild.roles.cache.size}`)
+                .addField('Emojis:-', `${message.guild.emojis.cache.size}`)
+                .setTimestamp()
+                .setFooter(`Requested by ${message.author.username}`);
+
+            message.channel.send(serverEmbed);
         }
-        else if (message.content === `~about`){
+        else if (msg === `~about`){
             const helpEmbed = new Discord.MessageEmbed()
                 .setColor('RANDOM')
                 .setTitle('About Me:-')
@@ -44,12 +56,12 @@ client.on('message', message => {
 
             message.channel.send(helpEmbed);
         }
-        else if (message.content === `~restart` || message.content === `~reset`){
+        else if (msg === `~restart` || msg === `~reset`){
             message.channel.send('Restarting...')
             .then(message => client.destroy())
             client.login(token);
         }
-        else if (message.content === `~help`){
+        else if (msg === `~help`){
             const helpEmbed = new Discord.MessageEmbed()
                 .setColor('RANDOM')
                 .setTitle('Commands:-')
@@ -63,19 +75,19 @@ client.on('message', message => {
 
             message.channel.send(helpEmbed);
         }
-        else if (message.content === `lol`){
+        else if (msg === `lol`){
             message.react('🤣');
         }
-        else if (message.content === `poop`){
+        else if (msg === `poop`){
             message.react('💩');
         }
-        else if (message.content === `thank you`){
+        else if (msg === `thank you`){
             message.react('🙏🏼');
         }
-        else if (message.content === `welcome`){
+        else if (msg === `welcome`){
             message.react('😁');
         }
-        else if (message.content === `hi`){
+        else if (msg === `hi`){
             message.channel.send('```Hello! 🖐🏼```');
         }
     }
