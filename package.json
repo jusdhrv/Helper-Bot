@@ -10,8 +10,16 @@
   "author": "Dhruv D",
   "license": "ISC",
   "dependencies": {
+    "canvacord": "^5.0.8",
+    "chatcord": "^0.0.5",
+    "danbot-hosting": "^0.1.6",
+    "discord-emoji-convert": "^1.6.0",
+    "discord.js": "^12.5.1",
     "figlet": "^1.5.0",
+    "jimp": "^0.16.1",
     "node-fetch": "^2.6.1",
-    "novelcovid": "^3.0.0"
+    "novelcovid": "^3.0.0",
+    "os": "^0.1.1",
+    "something-random-on-discord": "^0.0.2"
   }
 }
