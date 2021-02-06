@@ -36,14 +36,6 @@ client.on("message", async message => {
         if (msg === `~ping`){
             message.channel.send(`🏓Latency is: ${Date.now() - message.createdTimestamp}ms`);
         }
-        else if (msg.includes('~embed')) {
-            let text = msg.slice(6)
-            let embed = new Discord.MessageEmbed()
-                .setTitle('`EMBED MAKER`')
-                .addField("------------------", `${text}`)
-                .setColor(`BLUE`)
-            message.channel.send(embed)
-        }
         else if (msg.includes(`~emojify`)){
             message.channel.send(emoji.convert(msg.slice(8)))
         }
@@ -79,7 +71,6 @@ client.on("message", async message => {
                 .addField('Node-Version', `${NodeVersion}`, true)
                 .addField('Shards', `${shard}`, true)
                 .addField('Cores', `${cores}`, true)
-                .addField('Ping', `${Date.now() - message.createdTimestamp}ms`, true)
                 .setTimestamp()
                 .setFooter(`${message.author.tag}`, message.author.displayAvatarURL());
             message.channel.send(stats);
