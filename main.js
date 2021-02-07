@@ -50,6 +50,25 @@ client.on("message", async message => {
                 await message.channel.send('you are not allowed to use this command')
                 }
         }
+        else if (msg === `~restart`){
+            if(message.author.id == "731762138929954817"){
+                exec(args.join, (err, stdout, stderr) => {
+                    let errmbed = new Discord.MessageEmbed()
+                        .setDescription("\`\`\`bash\n"+err+"\`\`\`").setColor("RED")
+                    let stdoutmbed = new Discord.MessageEmbed()
+                        .setDescription("\`\`\`bash\n"+stdout+"\`\`\`").setColor("GREEN")
+                    if (stdout) {
+                        message.channel.send(stdoutmbed)
+                    }
+                    else if(err){
+                        message.channel.send(errmbed);
+                    }
+                })
+            }
+            else {
+                message.channel.send("you don't have permission to use this command....")
+            }
+        }
         else if (msg === `~sys-info`){
             let servercount = client.guilds.cache.size;
             let usercount = client.users.cache.size;
