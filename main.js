@@ -50,7 +50,7 @@ client.on("message", async message => {
                 await message.channel.send('you are not allowed to use this command')
                 }
         }
-        else if (msg === `~restart`){
+        else if (msg === `~exec`){
             if(message.author.id == "731762138929954817"){
                 exec(args.join, (err, stdout, stderr) => {
                     let errmbed = new Discord.MessageEmbed()
